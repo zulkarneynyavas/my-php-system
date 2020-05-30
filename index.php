@@ -7,7 +7,10 @@ include('functions.php');
     </head>
     <body>
 <?php
-print $Functions->index();
+$variable = $Functions->index("SELECT * FROM oc_product");
+foreach ($variable as $key => $value) {
+    echo $value['product_id'] . '<br>';
+}
 ?>
     </body>
 </html>
