@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('database.php');
 
 Class Functions extends Database {
 	
