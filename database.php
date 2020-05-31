@@ -34,14 +34,18 @@ Class Database {
 				return $sth->fetchAll();
 				break;
 			case 'UPDATE':
-				$sth = $this->connection->prepare($args[0]);
-				$update = $sth->execute($args[1]);
+				$sth = $this->connection->prepare("UPDATE " . $args[0] . " SET " . implode(' = ?, ', array_keys($args[1])) . ' = ?' . "
+					WHERE " . $args[3] . ' = ?' . "
+				");
+				foreach ($args[2] as $key => $value) {
+					$update = $sth->execute( array_values( array_merge( $args[1], array($key => $value) ) ) );
+				}
 				if ($update) {
 					return $update;
 				}
 				break;
 			case 'INSERT':
-				$sth = $this->connection->prepare("INSERT INTO " . $args[0] . "(" . implode(',', array_keys($args[1])) . ") 
+				$sth = $this->connection->prepare("INSERT INTO " . $args[0] . "(" . implode(', ', array_keys($args[1])) . ") 
 					VALUES(" . substr(str_repeat('?,', count(array_keys($args[1]))), 0, -1) . ")
 				");
 				$insert = $sth->execute(array_values($args[1]));
@@ -50,10 +54,16 @@ Class Database {
 				}
 				break;
 			case 'DELETE':
-				echo "i eşittir 2";
+				$sth = $this->connection->prepare("DELETE FROM " . $args[0] . " 
+					WHERE " . $args[1] . " in (" . str_repeat("?, ", count($args[2]) -1) . "?)
+				");
+				$delete = $sth->execute($args[2]);
+				if ($delete) {
+					return $delete;
+				}
 				break;
 			default:
-				echo "i ne 0, ne 1 ne de 2'ye eşittir";
+				return 'error';
 		}
 	}
 

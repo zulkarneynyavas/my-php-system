@@ -11,8 +11,20 @@ include('database.php');
 <body>
 
 <?php
-
 /*
+$delete = $db->DELETE(
+	'oc_product', 
+	'product_id', 
+	[
+		207,
+		205
+	]
+);
+
+print_r($delete);
+
+///////////////////////////
+
 $insert = $db->INSERT(
 	'oc_product', 
 	[
@@ -23,16 +35,28 @@ $insert = $db->INSERT(
 
 print_r($insert);
 */
+///////////////////////////
+
+$update = $db->UPDATE(
+	'oc_product', 
+	[
+		'model'	=> 'qwex',
+		'sku'	=> 'zxcxcvüğşül'
+	],
+	[
+
+		214
+	],
+	'product_id'
+);
+
+print_r($update);
 
 ///////////////////////////
 
 $select = $db->SELECTALL("SELECT * FROM oc_product ORDER BY product_id DESC");
 
-//print_r($select);
-
 print '<pre>' . json_encode($select, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . '</pre>';
-
-//print json_encode($select, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 
 ?>
 	</body>
