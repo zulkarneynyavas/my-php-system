@@ -10,6 +10,8 @@ include('database.php');
 </head>
 <body>
 
+Hello World!
+
 <?php
 /*
 $delete = $db->DELETE(
