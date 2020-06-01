@@ -34,7 +34,7 @@ $insert = $db->INSERT(
 );
 
 print_r($insert);
-*/
+
 ///////////////////////////
 
 $update = $db->UPDATE(
@@ -44,14 +44,13 @@ $update = $db->UPDATE(
 		'sku'	=> 'zxcxcvüğşül'
 	],
 	[
-
 		214
 	],
 	'product_id'
 );
 
 print_r($update);
-
+*/
 ///////////////////////////
 
 $select = $db->SELECTALL("SELECT * FROM oc_product ORDER BY product_id DESC");
