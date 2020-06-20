@@ -1,5 +1,5 @@
 <?php
-include('database.php');
+include 'database.php';
 ?>
 <!DOCTYPE html>
 <html lang="tr">
@@ -9,9 +9,6 @@ include('database.php');
 	<title>Document</title>
 </head>
 <body>
-
-Hello World!
-
 <?php
 /*
 $delete = $db->DELETE(
@@ -27,37 +24,78 @@ print_r($delete);
 
 ///////////////////////////
 
-$insert = $db->INSERT(
-	'oc_product', 
-	[
-		'model'	=> 'fooüğşi',
-		'sku'	=> 'bar'
-	]
-);
+$insert = $db->INSERT('oc_product', [
+	'model'	=> 'fooüğşi',
+	'sku'	=> 'bar'
+]);
 
 print_r($insert);
+
+///////////////////////////
+
+
 
 ///////////////////////////
 
 $update = $db->UPDATE(
 	'oc_product', 
 	[
-		'model'	=> 'qwex',
-		'sku'	=> 'zxcxcvüğşül'
+		'model'	=> 'x',
+		'sku'	=> 'zxce',
+		'upc'	=> '65165'
 	],
-	[
-		214
-	],
-	'product_id'
+	'product_id',
+	262
 );
 
 print_r($update);
+
 */
-///////////////////////////
 
-$select = $db->SELECTALL("SELECT * FROM oc_product ORDER BY product_id DESC");
+$select = $db->SELECT([
+	"select" => [
+		"model",
+		"quantity",
+		"image"
+	],
+	"from" => "oc_product",
+	"where" => [
+		"stock_status_id" => [
+			"<",
+			6
+		],
+		"quantity" => [
+			"=",
+			1000
+		]
+	],
+	"limit" => 2
+]);
 
-print '<pre>' . json_encode($select, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . '</pre>';
+/*
+json_encode({
+	"select": [
+		"model",
+		"quantity",
+		"image"
+	],
+	"from": "oc_product",
+	"where": {
+		"stock_status_id": [
+			"<",
+			6
+		],
+		"quantity": [
+			"=",
+			1000
+		]
+	}
+})
+*/
+
+//$select = $db->SELECTALL("SELECT model, quantity, image FROM oc_product WHERE stock_status_id < :stock_status_id AND quantity = :quantity", 6, 1000);
+
+print "<pre>" . json_encode($select, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . "</pre>";
 
 ?>
 	</body>

@@ -1,17 +1,13 @@
 <?php
+include 'config.php';
+
 Class Database {
 	
 	protected $connection;
 	
 	function __construct() {
-		$dbhost = [
-			'dbhost' => '127.0.0.1',
-			'dbuser' => 'root',
-			'dbpass' => '',
-			'dbname' => 'opencart'
-		];
 		try {
-			$this->connection = new PDO('mysql:host=' . $dbhost['dbhost'] . ';dbname=' . $dbhost['dbname'], $dbhost['dbuser'], $dbhost['dbpass']);
+			$this->connection = new PDO("mysql:host=" . MYSQL_HOST . ";dbname=" . MYSQL_DB, MYSQL_USER, MYSQL_PASS);
 			$this->connection->query("SET NAMES utf8");
 			$this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 			return true;
@@ -21,39 +17,75 @@ Class Database {
 	}
 
 	public function __call($method, $args) {
-
 		switch ($method) {
-			case 'SELECT':
-				$sth = $this->connection->prepare($args[0]);
-				$sth->execute();
-				return $sth->fetch(PDO::FETCH_OBJ);
-				break;
-			case 'SELECTALL':
-				$sth = $this->connection->prepare($args[0]);
+			case "SELECT":
+				$sql = "";
+				foreach ($args[0] as $key => $value) {
+					switch ($key) {
+						case "select":
+							$sql .= "SELECT ";
+							$sql .= implode(", ", array_values($value));
+							break;
+						case "from":
+							$sql .= " FROM ";
+							$sql .= $value;
+							break;
+						case "where":
+							$sql .= " WHERE ";
+							foreach ($value as $key => $value) {
+								$sql .= $key . " " . $value[0] . " :" . $key . " AND ";
+							}
+							$sql = rtrim($sql, " AND ");
+							break;
+						case "limit":
+							$sql .= " LIMIT ";
+							$sql .= $value;
+							break;
+					}
+				}
+				$sth = $this->connection->prepare($sql);
+				foreach ($args[0]["where"] as $key => $value) {
+					$sth->bindParam(":" . $key, $value[1]);
+				}
 				$sth->execute();
 				return $sth->fetchAll();
 				break;
-			case 'UPDATE':
-				$sth = $this->connection->prepare("UPDATE " . $args[0] . " SET " . implode(' = ?, ', array_keys($args[1])) . ' = ?' . "
-					WHERE " . $args[3] . ' = ?' . "
-				");
-				foreach ($args[2] as $key => $value) {
-					$update = $sth->execute( array_values( array_merge( $args[1], array($key => $value) ) ) );
-				}
-				if ($update) {
-					return $update;
-				}
+			case "UPDATE":
+
+$stmt = $pdo->prepare("UPDATE movies 
+	SET 
+	filmName = :filmName, 
+	filmDescription = :filmDescription, 
+	filmImage = :filmImage,  
+	filmPrice = :filmPrice,  
+	filmReview = :filmReview  
+		WHERE 
+		filmID = :filmID
+");                                  
+$stmt->bindParam(':filmName', $_POST['filmName'], PDO::PARAM_STR);       
+$stmt->bindParam(':filmDescription', $_POST['$filmDescription'], PDO::PARAM_STR);    
+$stmt->bindParam(':filmImage', $_POST['filmImage'], PDO::PARAM_STR); 
+$stmt->bindParam(':filmPrice', $_POST['filmPrice'], PDO::PARAM_STR); 
+$stmt->bindParam(':filmReview', $_POST['filmReview'], PDO::PARAM_STR);   
+$stmt->bindParam(':filmID', $_POST['filmID'], PDO::PARAM_INT);   
+$stmt->execute();
+
 				break;
-			case 'INSERT':
-				$sth = $this->connection->prepare("INSERT INTO " . $args[0] . "(" . implode(', ', array_keys($args[1])) . ") 
-					VALUES(" . substr(str_repeat('?,', count(array_keys($args[1]))), 0, -1) . ")
+			case "INSERT":
+				$sth = $this->connection->prepare("
+					INSERT INTO " . $args[0] . "
+						(" . implode(", ", array_keys($args[1])) . ")
+							VALUES(" . ":" . implode(", :", array_keys($args[1])) . ")
 				");
-				$insert = $sth->execute(array_values($args[1]));
+				foreach ($args[1] as $key => $value) {
+					$sth->bindParam(':' . $key, $value);
+				}
+				$insert = $sth->execute();
 				if ($insert) {
 					return $this->connection->lastInsertId();
 				}
 				break;
-			case 'DELETE':
+			case "DELETE":
 				$sth = $this->connection->prepare("DELETE FROM " . $args[0] . " 
 					WHERE " . $args[1] . " in (" . str_repeat("?, ", count($args[2]) -1) . "?)
 				");
@@ -63,7 +95,7 @@ Class Database {
 				}
 				break;
 			default:
-				return 'error';
+				return "error";
 		}
 	}
 
@@ -74,4 +106,3 @@ Class Database {
 }
 
 $db = new Database;
-?>
