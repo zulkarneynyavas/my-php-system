@@ -1,10 +1,10 @@
 <?php
 $data = (object) [
-	"title" => "abc"
+	"title" => "Hello World"
 ];
 $this->Header($data);
 ?>
-abc
+Hello World!
 <?php
 $this->Footer();
 ?>
