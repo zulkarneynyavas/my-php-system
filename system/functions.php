@@ -4,38 +4,41 @@ Class Functions extends Database {
 	protected $option;
 	function __construct() {
 		parent::__construct();
-		$this->option = json_decode(file_get_contents("options.json"));
+		$this->option = json_decode(file_get_contents($this->DirRoot("options.json")));
 	}
-	function Directory($directory = null) {
-		return rtrim($_SERVER["SCRIPT_FILENAME"], "index.php") . "app/" . $directory;
+	function DirRoot($data = null) {
+		return rtrim($_SERVER["SCRIPT_FILENAME"], "index.php") . $data;
+	}
+	function DirApp($data = null) {
+		return $this->DirRoot("app/" . $data);
+	}
+	function UrlRoot($data = null) {
+		return $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . rtrim($_SERVER["SCRIPT_NAME"], "index.php") . $data;
+	}
+	function UrlApp($data = null) {
+		return $this->UrlRoot("app/" . $data);
 	}
 	function Header($data = null) {
-		include $this->Directory("common/header.php");
+		include $this->DirApp("common/header.php");
 	}
 	function Footer($data = null) {
-		include $this->Directory("common/footer.php");
+		include $this->DirApp("common/footer.php");
 	}
-	function Link($url = null) {
-		return DB_HTTP . DB_BASE . $url;
+	function PrintJson($data) {
+        return "<pre>" . json_encode($data, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . "</pre>";
 	}
-	function File($url = null) {
-		return DB_HTTP . DB_BASE . "app/" . $url;
-	}
-	function PrintJson($array) {
-        return "<pre>" . json_encode($array, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . "</pre>";
-	}
-	function PrintMoney($money) {
-        return number_format($money, 2, ",", ".") . " &#8378;";
+	function PrintMoney($data) {
+        return number_format($data, 2, ",", ".") . " &#8378;";
 	}
 	function Redirect($url, $time) {
 		if (!preg_match("/^http.+/", $url)) {
-			$url = $this->Link($url);
+			$url = $this->UrlRoot($url);
 		}
 		return "<meta http-equiv=\"refresh\" content=\"" . $time . "; url=" . $url . "\">";
 	}
 	function ExitIfNotLogin() {
 		if (!$this->IsLogin()) {
-			exit("Lütfen <a href=\"" . $this->Link("login") . "\">giriş yap</a>");
+			exit("Lütfen <a href=\"" . $this->UrlRoot("login") . "\">giriş yap</a>");
 		}
 	}
 	function IsLogin() {

@@ -4,6 +4,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $data->title ?></title>
-	<link rel="stylesheet" href="<?php echo $this->File("assets/css/style.css") ?>">
+	<link rel="stylesheet" href="<?php echo $this->UrlApp("assets/css/index.css") ?>">
 </head>
 <body>

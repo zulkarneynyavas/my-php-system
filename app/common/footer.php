@@ -1,3 +1,3 @@
-	<script src="<?php echo $this->File("assets/js/main.js") ?>"></script>
+	<script src="<?php echo $this->UrlApp("assets/js/index.js") ?>"></script>
 </body>
 </html>

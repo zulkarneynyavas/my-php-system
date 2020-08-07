@@ -1,6 +1,6 @@
-function Send(Form) {
+function Send(c) {
 	var a = new XMLHttpRequest(),
-		b = new FormData(Form);
+		b = new FormData(c);
 
 	a.addEventListener("load", function(e) {
 		console.log(e);
@@ -10,7 +10,7 @@ function Send(Form) {
 		console.log(e);
 	});
 
-	a.open(Form.method, Form.action);
+	a.open(c.method, c.action);
 	a.send(b);
 
 	return false;
