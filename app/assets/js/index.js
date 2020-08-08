@@ -31,10 +31,3 @@ function Send(a) {
 	b.send(c);
 	return false;
 }
-
-
-
-/**	 */
-function falanca(filan) {
-	alert();
-}
