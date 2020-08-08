@@ -1,3 +1,3 @@
 <?php
-echo $this->UrlRoot();
+echo $this->UriRoot();
 echo $this->PrintJson($_SERVER);

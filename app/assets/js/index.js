@@ -1,6 +1,7 @@
-function Send(c) {
+function Send(e) {
+	
 	var a = new XMLHttpRequest(),
-		b = new FormData(c);
+		b = new eData(e);
 
 	a.addEventListener("load", function(e) {
 		console.log(e);
@@ -10,7 +11,7 @@ function Send(c) {
 		console.log(e);
 	});
 
-	a.open(c.method, c.action);
+	a.open(e.method, e.action);
 	a.send(b);
 
 	return false;

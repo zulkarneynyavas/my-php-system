@@ -1,5 +1,4 @@
 <?php
-include "functions.php";
 Class Router extends Functions {
 	protected $url;
 	function Index() {

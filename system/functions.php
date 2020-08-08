@@ -1,5 +1,4 @@
 <?php
-include "database.php";
 Class Functions extends Database {
 	protected $option;
 	function __construct() {
@@ -12,11 +11,11 @@ Class Functions extends Database {
 	function DirApp($data = null) {
 		return $this->DirRoot("app/" . $data);
 	}
-	function UrlRoot($data = null) {
+	function UriRoot($data = null) {
 		return $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . rtrim($_SERVER["SCRIPT_NAME"], "index.php") . $data;
 	}
-	function UrlApp($data = null) {
-		return $this->UrlRoot("app/" . $data);
+	function UriApp($data = null) {
+		return $this->UriRoot("app/" . $data);
 	}
 	function Header($data = null) {
 		include $this->DirApp("common/header.php");
@@ -31,14 +30,11 @@ Class Functions extends Database {
         return number_format($data, 2, ",", ".") . " &#8378;";
 	}
 	function Redirect($url, $time) {
-		if (!preg_match("/^http.+/", $url)) {
-			$url = $this->UrlRoot($url);
-		}
-		return "<meta http-equiv=\"refresh\" content=\"" . $time . "; url=" . $url . "\">";
+		return "<meta http-equiv=\"refresh\" content=\"" . $time . "; url=" . $this->UriRoot($url) . "\">";
 	}
 	function ExitIfNotLogin() {
 		if (!$this->IsLogin()) {
-			exit("Lütfen <a href=\"" . $this->UrlRoot("login") . "\">giriş yap</a>");
+			exit("Lütfen <a href=\"" . $this->UriRoot("login") . "\">giriş yap</a>");
 		}
 	}
 	function IsLogin() {
@@ -50,14 +46,6 @@ Class Functions extends Database {
 		session_unset();
 		session_destroy();
 		session_write_close();
-	}
-	function Random($length = 16) {
-		$characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		$charactersLength = strlen($characters);
-		$randomString = "";
-		for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
-		}
-		return $randomString;
+		return $this->Redirect("", 2);
 	}
 }

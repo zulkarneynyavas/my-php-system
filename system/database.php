@@ -1,5 +1,4 @@
 <?php
-include "config.php";
 Class Database {
 	protected $connection;
 	function __construct() {
