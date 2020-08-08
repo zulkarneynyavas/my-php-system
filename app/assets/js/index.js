@@ -31,12 +31,3 @@ function Send(a) {
 	b.send(c);
 	return false;
 }
-
-
-function abc(e) {
-	console.log(e);
-}
-
-function simdiyeniisiyaptim() {
-	//vebitirdim
-}
