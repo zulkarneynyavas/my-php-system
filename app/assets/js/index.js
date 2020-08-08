@@ -31,3 +31,7 @@ function Send(a) {
 	b.send(c);
 	return false;
 }
+
+function yenifonksiyon() {
+
+}
