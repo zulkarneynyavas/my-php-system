@@ -36,3 +36,7 @@ function Send(a) {
 function abc(e) {
 	console.log(e);
 }
+
+function simdiyeniisiyaptim() {
+	//vebitirdim
+}
