@@ -1,21 +1,23 @@
 <?php
 Class functions extends database {
 	protected $option;
+	protected $app;
 	function __construct() {
 		parent::__construct();
 		$this->option = json_decode(file_get_contents($this->root_directory("options.json")));
+		$this->app = "app";
 	}
 	function root_directory($data = null) {
 		return rtrim($_SERVER["SCRIPT_FILENAME"], "index.php") . $data;
 	}
 	function app_directory($data = null) {
-		return $this->root_directory("app/" . $data);
+		return $this->root_directory($this->app . "/" . $data);
 	}
 	function root_url($data = null) {
 		return $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . rtrim($_SERVER["SCRIPT_NAME"], "index.php") . $data;
 	}
 	function app_url($data = null) {
-		return $this->root_url("app/" . $data);
+		return $this->root_url($this->app . "/" . $data);
 	}
 	function header($data = null) {
 		include $this->app_directory("common/header.php");
@@ -46,6 +48,15 @@ Class functions extends database {
 		session_unset();
 		session_destroy();
 		session_write_close();
-		return $this->redirect("", 2);
+		//return $this->redirect("", 1);
+	}
+	function random($length = 16) {
+		$characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$charactersLength = strlen($characters);
+		$randomString = "";
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
 	}
 }
