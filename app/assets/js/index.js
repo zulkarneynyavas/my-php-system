@@ -1,3 +1,7 @@
+function name(params) {
+	//sdfsdfsdfsdf
+}
+
 function Send(a) {
 	var b = new XMLHttpRequest(),
 		c = new FormData(a),
