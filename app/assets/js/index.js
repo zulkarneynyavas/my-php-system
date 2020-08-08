@@ -32,6 +32,7 @@ function Send(a) {
 	return false;
 }
 
-function yenifonksiyon() {
 
+function abc(e) {
+	console.log(e);
 }
