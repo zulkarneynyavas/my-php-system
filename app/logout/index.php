@@ -1,3 +1,3 @@
 <?php
-echo $this->Logout();
+echo $this->logout();
 echo "logout";

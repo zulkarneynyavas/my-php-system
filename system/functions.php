@@ -1,51 +1,51 @@
 <?php
-Class Functions extends Database {
+Class functions extends database {
 	protected $option;
 	function __construct() {
 		parent::__construct();
-		$this->option = json_decode(file_get_contents($this->DirRoot("options.json")));
+		$this->option = json_decode(file_get_contents($this->root_directory("options.json")));
 	}
-	function DirRoot($data = null) {
+	function root_directory($data = null) {
 		return rtrim($_SERVER["SCRIPT_FILENAME"], "index.php") . $data;
 	}
-	function DirApp($data = null) {
-		return $this->DirRoot("app/" . $data);
+	function app_directory($data = null) {
+		return $this->root_directory("app/" . $data);
 	}
-	function UriRoot($data = null) {
+	function root_url($data = null) {
 		return $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . rtrim($_SERVER["SCRIPT_NAME"], "index.php") . $data;
 	}
-	function UriApp($data = null) {
-		return $this->UriRoot("app/" . $data);
+	function app_url($data = null) {
+		return $this->root_url("app/" . $data);
 	}
-	function Header($data = null) {
-		include $this->DirApp("common/header.php");
+	function header($data = null) {
+		include $this->app_directory("common/header.php");
 	}
-	function Footer($data = null) {
-		include $this->DirApp("common/footer.php");
+	function footer($data = null) {
+		include $this->app_directory("common/footer.php");
 	}
-	function PrintJson($data) {
+	function print_json($data) {
         return "<pre>" . json_encode($data, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . "</pre>";
 	}
-	function PrintMoney($data) {
+	function print_money($data) {
         return number_format($data, 2, ",", ".") . " &#8378;";
 	}
-	function Redirect($url, $time) {
-		return "<meta http-equiv=\"refresh\" content=\"" . $time . "; url=" . $this->UriRoot($url) . "\">";
+	function redirect($url, $time) {
+		return "<meta http-equiv=\"refresh\" content=\"" . $time . "; url=" . $this->root_url($url) . "\">";
 	}
-	function ExitIfNotLogin() {
-		if (!$this->IsLogin()) {
-			exit("Lütfen <a href=\"" . $this->UriRoot("login") . "\">giriş yap</a>");
+	function exit_if_not_login() {
+		if (!$this->is_login()) {
+			exit("Lütfen <a href=\"" . $this->root_url("login") . "\">giriş yap</a>");
 		}
 	}
-	function IsLogin() {
+	function is_login() {
 		if (isset($_SESSION["session"]["login"])) {
 			return true;
 		}
 	}
-	function Logout() {
+	function logout() {
 		session_unset();
 		session_destroy();
 		session_write_close();
-		return $this->Redirect("", 2);
+		return $this->redirect("", 2);
 	}
 }

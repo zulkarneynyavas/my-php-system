@@ -53,7 +53,7 @@ $query = $this->Delete("DELETE FROM oc_order_shipment
 
 
 
-$query = $this->Select("SELECT quantity
+$query = $this->select("SELECT quantity
 	FROM oc_product
 		WHERE quantity = :a
 ", [

@@ -6,5 +6,5 @@ include "system/config.php";
 include "system/database.php";
 include "system/functions.php";
 include "system/router.php";
-$router = new Router();
+$router = new router();
 $router->Index();

@@ -1,3 +1,3 @@
-	<script src="<?php echo $this->UriApp("assets/js/index.js") ?>"></script>
+	<script src="<?php echo $this->app_url("assets/js/index.js") ?>"></script>
 </body>
 </html>

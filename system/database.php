@@ -1,5 +1,5 @@
 <?php
-Class Database {
+Class database {
 	protected $connection;
 	function __construct() {
 		try {
@@ -18,13 +18,13 @@ Class Database {
 		}
 		$query->execute();
 		switch ($method) {
-			case "Select":
+			case "select":
 				return $query->fetch();
 				break;
-			case "SelectAll":
+			case "select_all":
 				return $query->fetchAll();
 				break;
-			case "Insert":
+			case "insert":
 				return $this->connection->lastInsertId();
 				break;
 			default:

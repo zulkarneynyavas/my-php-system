@@ -2,9 +2,9 @@
 $data = (object) [
 	"title" => "Hello World"
 ];
-$this->Header($data);
+$this->header($data);
 ?>
 hello world
 <?php
-$this->Footer();
+$this->footer();
 ?>
