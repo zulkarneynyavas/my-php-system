@@ -26,7 +26,8 @@ Class custom extends functions {
 		session_unset();
 		session_destroy();
 		session_write_close();
-		return "Çıkış yapılıyor" . $this->redirect("", 1);
+		return "logout";
+		//return "Çıkış yapılıyor" . $this->redirect("", 1);
 	}
 	function random($length = 16) {
 		$characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
