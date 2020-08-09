@@ -48,7 +48,7 @@ Class functions extends database {
 		session_unset();
 		session_destroy();
 		session_write_close();
-		//return $this->redirect("", 1);
+		return "Çıkış yapılıyor" . $this->redirect("", 1);
 	}
 	function random($length = 16) {
 		$characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
