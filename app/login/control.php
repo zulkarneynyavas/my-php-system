@@ -1,17 +1,14 @@
 <?php
 $json = [];
-
 if ($this->is_login()) {
 	$json["error"]["warning"] = "Zaten giriş yaptınız";
 }
-
 if ($_POST["username"] == "") {
 	$json["error"]["username"] = "Lütfen kullanıcı adı girin.";
 }
 if ($_POST["password"] == "") {
 	$json["error"]["password"] = "Lütfen şifre girin.";
 }
-
 if (!isset($json["error"]["username"]) && !isset($json["error"]["password"])) {
 	$oc_user = $this->select("SELECT username, password, salt
 		FROM oc_user
@@ -25,7 +22,6 @@ if (!isset($json["error"]["username"]) && !isset($json["error"]["password"])) {
 		$json["error"]["warning"] = "Kullanıcı adı ya da şifre yanlış";
 	}
 }
-
 if (!isset($json["error"])) {
 	$_SESSION["session"]["login"] = true;
 	if (isset($_POST["http_referer"])) {

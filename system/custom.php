@@ -1,5 +1,8 @@
 <?php
 Class custom extends functions {
+	function hello_world() {
+		return "hello world " . $this->option->app;
+	}
 	function print_json($data) {
         return "<pre>" . json_encode($data, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . "</pre>";
 	}
