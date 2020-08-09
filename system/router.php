@@ -1,5 +1,5 @@
 <?php
-Class router extends functions {
+Class router extends custom {
 	protected $url;
 	function Index() {
 		$this->url = rtrim($_SERVER["SCRIPT_NAME"], "index.php");
