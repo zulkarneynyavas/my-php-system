@@ -12,7 +12,7 @@ root/
 |	└── index.php
 └── system/
 	├── config.php
-	├── database.php
+	├── db.php
 	├── function.php
 	└── router.php
 *********************

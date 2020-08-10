@@ -1,5 +1,5 @@
 <?php
-Class functions extends database {
+Class functions extends db {
 	protected $option;
 	function __construct() {
 		parent::__construct();
@@ -18,13 +18,9 @@ Class functions extends database {
 		return $this->root_url($this->option->app . "/" . $data);
 	}
 	function header($data = null) {
-		if (file_exists($this->app_directory("common/header.php"))) {
-			include $this->app_directory("common/header.php");
-		}
+		include $this->app_directory("common/header.php");
 	}
 	function footer($data = null) {
-		if (file_exists($this->app_directory("common/footer.php"))) {
-			include $this->app_directory("common/footer.php");
-		}
+		include $this->app_directory("common/footer.php");
 	}
 }

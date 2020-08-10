@@ -1,5 +1,5 @@
 <?php
-Class database {
+Class db {
 	protected $connection;
 	function __construct() {
 		try {

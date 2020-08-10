@@ -1,11 +1,11 @@
 <?php
 $data = (object) [
-	"title" => "Hello World"
+	"title" => "Züber"
 ];
 $this->header($data);
 ?>
 <?php
-echo $this->hello_world();
+echo $this->print_json(["hello world"]);
 ?>
 <?php
 $this->footer();
