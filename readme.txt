@@ -9,12 +9,16 @@ root/
 |	|	├── 404.php
 |	|	├── footer.php
 |	|	└── header.php
+|	├── custom.php
 |	└── index.php
-└── system/
-	├── config.php
-	├── db.php
-	├── function.php
-	└── router.php
+├── system/
+|	├── config.php
+|	├── database.php
+|	├── function.php
+|	└── router.php
+├── .htaccess
+├── index.php
+└── options.json
 *********************
 DB Using
 ---------

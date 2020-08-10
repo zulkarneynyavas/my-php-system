@@ -1,5 +1,5 @@
 <?php
-Class functions extends db {
+Class functions extends database {
 	protected $option;
 	function __construct() {
 		parent::__construct();
