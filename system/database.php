@@ -11,25 +11,33 @@ Class database {
 			return $error->getMessage();
 		}
 	}
-	function __call($method, $args) {
-		$query = $this->connection->prepare($args[0]);
-		foreach ($args[1] as $key => &$value) {
+	function query($sql, $binds) {
+		$query = $this->connection->prepare($sql);
+		foreach ($binds as $key => &$value) {
 			$query->bindParam(":" . $key, $value);
 		}
 		$query->execute();
-		switch ($method) {
-			case "select":
-				return $query->fetch();
-				break;
-			case "select_all":
-				return $query->fetchAll();
-				break;
-			case "insert":
-				return $this->connection->lastInsertId();
-				break;
-			default:
-				return $query->rowCount();
-		}
+		return $query;
+	}
+	function select($sql, $binds) {
+		$query = $this->query($sql, $binds);
+		return $query->fetch();
+	}
+	function select_all($sql, $binds) {
+		$query = $this->query($sql, $binds);
+		return $query->fetchAll();
+	}
+	function insert($sql, $binds) {
+		$query = $this->query($sql, $binds);
+		return $this->connection->lastInsertId();
+	}
+	function update($sql, $binds) {
+		$query = $this->query($sql, $binds);
+		return $query->rowCount();
+	}
+	function delete($sql, $binds) {
+		$query = $this->query($sql, $binds);
+		return $query->rowCount();
 	}
 	function __destruct() {
 		$this->connection = null;
