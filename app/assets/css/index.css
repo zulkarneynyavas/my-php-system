@@ -1,0 +1,49 @@
+body {
+	font-family: sans-serif;
+	font-size: 12px;
+	margin: 0;
+}
+button, input {
+	outline: none;
+}
+label {
+	cursor: pointer;
+}
+/**/
+.h-btn {
+	padding: 1px 5px;
+	background-color: #fafafa;
+	border-radius: 5px;
+	border-color: #dddddd;
+	border-width: 1px;
+	border-style: solid;
+	border-bottom-width: 2px;
+	cursor: pointer;
+}
+.h-btn:hover {
+	background-color: #fdfdfd;
+}
+.h-btn:active, .h-btn:disabled {
+	border-bottom-width: 1px;
+	margin-top: 1px;
+}
+.h-btn:disabled {
+	color: #dddddd;
+	cursor: default;
+	background-color: #fafafa;
+}
+/**/
+.h-inp {
+	border: none;
+	padding: 3px 6px;
+	background-color: #fafafa;
+	border-radius: 5px;
+	width: 100%;
+	box-sizing: border-box;
+}
+/**/
+.h-inp-con {
+	margin-bottom: 10px;
+	width: 100%;
+	max-width: 200px;
+}

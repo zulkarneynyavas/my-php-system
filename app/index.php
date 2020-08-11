@@ -1,13 +1,10 @@
 <?php
 $data = (object) [
-	"title" => "Züber"
+	"title" => "Hello World"
 ];
 $this->header($data);
 ?>
-<?php
-//echo $this->print_json(["hello world"]);
-echo $this->print_json($this->oc_order());
-?>
+hello world
 <?php
 $this->footer();
 ?>

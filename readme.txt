@@ -22,9 +22,9 @@ root/
 *********************
 DB Using
 ---------
-$query = $this->Insert("INSERT INTO oc_order_shipment 
-	(order_id, date_added, shipping_courier_id, tracking_number) 
-		VALUES 
+$query = $this->Insert("INSERT INTO oc_order_shipment
+	(order_id, date_added, shipping_courier_id, tracking_number)
+		VALUES
 			(:order_id, :date_added, :shipping_courier_id, :tracking_number)
 ", [
 	"order_id" => 3,
@@ -41,7 +41,7 @@ $query = $this->Update("UPDATE oc_order_shipment
 	"b" => 333
 ]);
 ---------
-$query = $this->Delete("DELETE FROM oc_order_shipment 
+$query = $this->Delete("DELETE FROM oc_order_shipment
 	WHERE order_id = :order_id AND tracking_number = :tracking_number
 ", [
 	"order_id" => 3,

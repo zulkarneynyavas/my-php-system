@@ -1,7 +1,7 @@
 <?php
 Class router extends custom {
 	protected $url;
-	function index() {
+	function Index() {
 		$this->url = rtrim($_SERVER["SCRIPT_NAME"], "index.php");
 		$this->url = str_replace($this->url, "/", $_SERVER["REQUEST_URI"]);
 		$this->url = rtrim($this->url, "/");
