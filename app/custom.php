@@ -1,5 +1,5 @@
 <?php
-Class custom extends functions {
+class custom extends functions {
 	function __construct() {
 		parent::__construct();
 		if (!isset($_SESSION)) {
