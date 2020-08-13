@@ -1,14 +1,16 @@
 <?php
 $data = (object) [
-	"title" => "Giriş Yap"
+	"title" => "Çıkış Yap"
 ];
 $this->header($data);
 ?>
 <?php
 if ($this->is_login()) {
-	echo $this->logout();
+	$this->logout();
+	echo "Çıkış yapılıyor";
+	echo $this->redirect("", 1);
 } else {
-	echo "Önce giriş yapmalısın";
+	echo "Zaten çıkış yaptın";
 }
 ?>
 <?php

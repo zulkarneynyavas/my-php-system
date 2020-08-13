@@ -36,9 +36,5 @@ if (!isset($json["error"])) {
 		$json["success"] = "Yönlendiriliyorsunuz";
 		$json["redirect"] = $this->root_url("login?login=true");
 	}
-	$file = $this->app_directory("login/log.txt");
-	$data = file_get_contents($file);
-	$data .= $_SERVER['REMOTE_ADDR'] . "|" . $_SERVER['HTTP_USER_AGENT'] . "|" . date("Y-m-d H:i:s") . "*";
-	file_put_contents($file, $data);
 }
 echo json_encode($json);

@@ -7,30 +7,33 @@ $this->header($data);
 <?php
 if (!$this->is_login()) {
 ?>
-<form class="h-frm" onsubmit="return Send(this)" method="post" action="<?php echo $this->root_url("login/control") ?>">
-	<div class="h-inp-con">
-		<h1 class="h-hea">GİRİŞ FORMU</h1>
+<form onsubmit="return Send(this)" method="post" action="<?php echo $this->root_url("login/control") ?>">
+	<h1>Giriş yap</h1>
+	<div class="input-container">
+		<div class="input-inner">
+			<label for="username">Kullanıcı adı</label>
+			<input type="text" name="username" id="username" placeholder="*******">
+		</div>
 	</div>
-	<div class="h-inp-con">
-		<input class="h-inp" 
-			type="text" 
-			name="username" 
-			id="username" 
-			placeholder="*******">
+	<div class="input-container">
+		<div class="input-inner">
+			<label for="password">Şifre</label>
+			<input type="password" name="password" id="password" placeholder="*******">
+		</div>
 	</div>
-	<div class="h-inp-con">
-		<input class="h-inp" 
-			type="password" 
-			name="password" 
-			id="password" 
-			placeholder="*******">
+	<?php
+if (isset($_SERVER["HTTP_REFERER"])) {
+?>
+	<input type="hidden" name="http_referer" value="<?php echo $_SERVER["HTTP_REFERER"] ?>">
+<?php
+}
+?>
+	<div class="button-container">
+		<div class="button-inner">
+			<button>Gönder</button>
+		</div>
 	</div>
-	<div class="h-inp-con">
-		<button class="h-btn">Gönder</button>
-	</div>
-	<div class="h-inp-con">
-		<input type="hidden" name="warning">
-	</div>
+	<ul id="json-response"></ul>
 </form>
 <?php
 } else {
