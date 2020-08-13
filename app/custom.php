@@ -43,4 +43,10 @@ class custom extends functions {
 		}
 		return $randomString;
 	}
+	public function HelloWorld() {
+		return "hello world " . $this->option->app;
+	}
+	public function Deneme() {
+		return 0 + 1;
+	}
 }

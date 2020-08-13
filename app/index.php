@@ -4,7 +4,9 @@ $data = (object) [
 ];
 $this->header($data);
 ?>
-hello world
+<?php
+echo $this->HelloWorld();
+?>
 <?php
 $this->footer();
 ?>

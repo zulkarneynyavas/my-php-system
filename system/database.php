@@ -11,7 +11,7 @@ class database {
 			return $error->getMessage();
 		}
 	}
-	public function __call($method, $args) {
+	function __call($method, $args) {
 		$query = $this->connection->prepare($args[0]);
 		foreach ($args[1] as $key => &$value) {
 			$query->bindParam(":" . $key, $value);

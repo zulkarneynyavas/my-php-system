@@ -22,7 +22,7 @@ root/
 *********************
 DB Using
 ---------
-$query = $this->Insert("INSERT INTO oc_order_shipment
+$query = $this->insert("INSERT INTO oc_order_shipment
 	(order_id, date_added, shipping_courier_id, tracking_number)
 		VALUES
 			(:order_id, :date_added, :shipping_courier_id, :tracking_number)
@@ -33,7 +33,7 @@ $query = $this->Insert("INSERT INTO oc_order_shipment
 	"tracking_number" => 666
 ]);
 ---------
-$query = $this->Update("UPDATE oc_order_shipment
+$query = $this->update("UPDATE oc_order_shipment
 	SET tracking_number = :a
 		WHERE order_id = :b
 ", [
@@ -41,7 +41,7 @@ $query = $this->Update("UPDATE oc_order_shipment
 	"b" => 333
 ]);
 ---------
-$query = $this->Delete("DELETE FROM oc_order_shipment
+$query = $this->delete("DELETE FROM oc_order_shipment
 	WHERE order_id = :order_id AND tracking_number = :tracking_number
 ", [
 	"order_id" => 3,
@@ -55,9 +55,7 @@ $query = $this->select("SELECT quantity
 	"a" => 1000
 ]);
 ---------
-$query = $this->SelectAll("SELECT quantity
+$query = $this->select_all("SELECT quantity
 	FROM oc_product
-		WHERE quantity = :a
 ", [
-	"a" => 1000
 ]);
