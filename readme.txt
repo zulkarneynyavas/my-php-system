@@ -1,16 +1,18 @@
 root/
 ├── app/
-|	├── assets/
-|	|	├── css/
-|	|	|	└── index.css
-|	|	└── js/
-|	|		└── index.js
-|	├──	common/
+|	├── common/
 |	|	├── 404.php
 |	|	├── footer.php
 |	|	└── header.php
 |	├── custom.php
 |	└── index.php
+├── assets/
+|	├── css/
+|	|	└── index.css
+|	├── js/
+|	|	└── index.js
+|	└── json/
+|		└── options.js
 ├── system/
 |	├── config.php
 |	├── database.php
@@ -18,8 +20,10 @@ root/
 |	└── router.php
 ├── .htaccess
 ├── index.php
-└── options.json
+└── readme.txt
+
 *********************
+
 DB Using
 ---------
 $query = $this->insert("INSERT INTO oc_order_shipment

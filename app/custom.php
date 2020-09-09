@@ -5,12 +5,12 @@ class custom extends functions {
 		if (!isset($_SESSION)) {
 			session_start();
 		}
+		$this->option = json_decode(file_get_contents($this->root_directory("assets/json/options.json")));
 	}
 	function print_json($array) {
         return "<pre>" . json_encode($array, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) . "</pre>";
 	}
 	function print_money($money) {
-		//return number_format($money, 2, ",", ".") . " &#8378;";
 		return number_format($money, 2, ",", ".");
 	}
 	function redirect($url, $time) {
@@ -44,7 +44,7 @@ class custom extends functions {
 		return $randomString;
 	}
 	public function HelloWorld() {
-		return "hello world " . $this->option->app;
+		return "hello world ";
 	}
 	public function Deneme() {
 		return 0 + 1;

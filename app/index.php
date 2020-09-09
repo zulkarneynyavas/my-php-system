@@ -1,12 +1,12 @@
 <?php
 $data = (object) [
-	"title" => "Züber"
+	"title" => $this->option->brand
 ];
 $this->header($data);
-?>
-<?php
+
+
 echo $this->HelloWorld();
-?>
-<?php
+
+
 $this->footer();
 ?>

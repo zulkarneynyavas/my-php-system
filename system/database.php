@@ -21,14 +21,17 @@ class database {
 			case "select":
 				return $query->fetch();
 				break;
-			case "select_all":
-				return $query->fetchAll();
-				break;
-			case "insert":
-				return $this->connection->lastInsertId();
-				break;
-			default:
-				return $query->rowCount();
+				case "select_all":
+					return $query->fetchAll();
+					break;
+					case "select_col":
+						return $query->fetchColumn();
+						break;
+						case "insert":
+							return $this->connection->lastInsertId();
+							break;
+							default:
+								return $query->rowCount();
 		}
 	}
 	function __destruct() {
