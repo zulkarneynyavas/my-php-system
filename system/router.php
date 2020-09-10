@@ -8,7 +8,7 @@ class router extends custom {
 		$this->url = rtrim($this->url, "/");
 		$this->url = explode("?", $this->url)[0];
 		$this->callback = explode("/", $this->url);
-		var_dump($this->callback);
+		//var_dump($this->callback);
 		$this->callback = array_pop($this->callback);
 		if (preg_match("/.html$/", $this->callback)) {
 			$this->url = rtrim($this->url, $this->callback);
@@ -18,7 +18,7 @@ class router extends custom {
 			$this->callback = false;
 		}
 		$this->url = ltrim($this->url, "/");
-		//var_dump($this->url);
+		var_dump($this->url);
 		var_dump($this->callback);
 		if (file_exists($this->app_directory($this->url . ".php"))) {
 			include $this->app_directory($this->url . ".php");
